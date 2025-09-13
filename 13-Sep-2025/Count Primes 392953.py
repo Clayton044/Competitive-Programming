@@ -1,0 +1,15 @@
+# Problem: Count Primes - https://leetcode.com/problems/count-primes/
+
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n < 3:
+            return 0
+        sieve = [True] * n
+        sieve[0] = sieve[1] = False
+
+        for i in range(2, int(n**0.5) + 1):
+            if sieve[i]:
+                for j in range(i*i, n, i):
+                    sieve[j] = False
+                    
+        return sum(sieve)
